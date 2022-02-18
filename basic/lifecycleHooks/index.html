@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>
+            V3 Basic
+        </title>
+        <style>
+            .box {
+                background-color: red;
+                height: 200px;
+                width: 200px;
+            }
+            .box.one {
+                background-color: green;
+            }
+            .box.two {
+                background-color: yellow;
+            }
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </header>
+    <body>
+        <div id="app" v-cloak>
+            {{ greeting }}
+            <input @keyup.enter="greet(greeting + '!!!!!')" v-model="greeting" type="text"/>
+            <hr>
+            <button @click="toggleBox">Toggle Box</button>
+            <test-box v-if="isVisible"></>
+        </div>
+        <script src="https://unpkg.com/vue@3"></script>
+        <script>
+            let app = Vue.createApp({
+                data: function() {
+                    return {
+                        greeting: 'Hellow Vue 3',
+                        isVisible: false,
+
+                    }
+                },
+                methods: {
+                    toggleBox() {
+                        this.isVisible = !this.isVisible;
+                    },
+                    greet(greeting) {
+                        console.log(greeting)
+                    }
+                },                
+                updated() {
+                    console.log('updated app')
+                }        
+            })
+            app.component('test-box', {
+                template: `
+                <div class="box"></div>
+                `,
+                created() {
+                    console.log('created')
+                },
+                mounted() {
+                    console.log('mounted')
+                },
+                unmounted() {
+                    console.log('unmounted')
+                },
+                updated() {
+                    console.log('updated test-box')
+                } 
+            })
+            app.mount('#app')
+        </script>
+    </body>
+</html>
+
