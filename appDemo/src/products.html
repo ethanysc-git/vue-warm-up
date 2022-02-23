@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Splendid Food</title>
+    <title>Products</title>
     <link rel="stylesheet" href="styles/style.min.css">
-    <link rel="icon" href="../public/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="../public/favicon.ico" type="image/ico">
     <style>
       [v-cloak] {
           display: none;
@@ -14,6 +12,7 @@
   <body>
 
     <div id="app" v-cloak>
+
       <header class="top-bar spread">
         <nav class="top-bar-nav">
           <a href="./app.html" class="top-bar-link">
@@ -33,14 +32,8 @@
         </a>
       </header>
 
-      <div class="splash-container">
-        <div class="splash">
-          <h1>Splendid Food</h1>
-        </div>
-      </div>
-
       <main class="wrapper">
-        <h2>Recommended</h2>
+        <h1>Products</h1>
         <div class="recommended">
           <products
             v-for="(product, index) in inventory.slice(0,3)"
@@ -51,17 +44,15 @@
             :add="addToCart"
           />
         </div>
-      </main>
-        <sidebar  
-          :cart="cart"
-          v-if="showsidebar" 
-          :toggle="toggleSidebar" 
-          :inventory="inventory"
-          :remove="removeItem"
-          />
+      </main> 
 
-      <footer>
-      </footer>
+      <sidebar  
+        :cart="cart"
+        v-if="showsidebar" 
+        :toggle="toggleSidebar" 
+        :inventory="inventory"
+        :remove="removeItem"
+        />
 
     </div>
     <script src="https://unpkg.com/vue@3"></script>
